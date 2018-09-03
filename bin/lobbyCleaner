@@ -18,18 +18,18 @@ var rootRef = Firebase.database().ref();
 var lobbyData, lobbyTempData, unchangedLobbiesData;
 
 rootRef.child('lobby').once('value').then(function(snapshot){
-    lobbyData = snapshot.val();
+    lobbyData = snapshot;
     
     //rootRef.child('lobbyTemp').set(snapshot.val());
 });
 
 rootRef.child('lobbyTemp').once('value').then(function(snapshot){
-    lobbyTempData = snapshot.val();
+    lobbyTempData = snapshot;
     
 });
 
 rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
-    unchangedLobbiesData = snapshot.val();
+    unchangedLobbiesData = snapshot;
     
 });
 
@@ -62,7 +62,7 @@ lobbyData.forEach((lobby) => {
     }
  });
     
-rootRef.child('lobbyTemp').set(lobbyData);
+rootRef.child('lobbyTemp').set(lobbyData.val());
     
     
 console.log("AMMAR IS EATING AND BECOMING VERY Thin");
