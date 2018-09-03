@@ -19,6 +19,9 @@ var lobbyData, lobbyTempData, unchangedLobbiesData;
 
 rootRef.child('lobby').once('value').then(function(snapshot){
     lobbyData = snapshot;
+    console.log("11");
+    console.log(lobbyData);
+    console.log("22");
     
     //rootRef.child('lobbyTemp').set(snapshot.val());
 });
