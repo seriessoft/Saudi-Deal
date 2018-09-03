@@ -15,7 +15,7 @@ Firebase.initializeApp(config);
 
 
 var rootRef = Firebase.database().ref();
-var lobbyData, lobbyTempData;
+var lobbyData, lobbyTempData, unchangedLobbiesData;
 
 rootRef.child('lobby').once('value').then(function(snapshot){
     lobbyData = snapshot.val();
@@ -28,12 +28,39 @@ rootRef.child('lobbyTemp').once('value').then(function(snapshot){
     
 });
 
-
-rootRef.child('unchangedLobbies').push().set({
-  author: "alanisawesome",
-  title: "The Turing Machine"
+rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
+    unchangedLobbiesData = snapshot.val();
+    
 });
 
+unchangedLobbiesData.forEach((lobby) => {
+    rootRef.child('unchangedLobbies').child(lobby).once('value').then(function(snapshot){
+        if(snapshot.val().counter >= 10){
+            console.log(lobby + ' has not been changed since long');
+            //edit here next time
+        }
+    });
+    
+});
 
+lobbyData.forEach((lobby) => {
+    if(lobby in lobbyTempData){
+        if(lobbyData[lobby] == lobbyTempData[lobby]){
+            if (lobby in unchangedLobbiesData){
+                rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
+                    var counter = snapshot.val().counter + 1;
+                    rootRef.child('unchangedLobbies').child(lobby).child('counter').set(counter);
+                });
+            }else{
+               rootRef.child('unchangedLobbies').child(lobby).child('counter').set(1);  
+            }
+        }
+        else{
+            rootRef.child('unchangedLobbies').child(lobby).remove(); 
+        }
+    else{
+        rootRef.child('unchangedLobbies').child(lobby).child('counter').set(0);
+     }
+    });
 
 console.log("AMMAR IS EATING AND BECOMING VERY Thin");
