@@ -11,13 +11,14 @@ var config = {
 };
 
 Firebase.initializeApp(config);
-
+/*
 var rootRef = Firebase.database().ref();
 
 rootRef.child('lobbyTemp').push().set({
   author: "alanisawesome",
   title: "The Turing Machine"
 });
+*/
 
 
 console.log("AMMAR IS EATING AND BECOMING VERY Thin");
