@@ -51,16 +51,18 @@ lobbyData.forEach((lobby) => {
                     var counter = snapshot.val().counter + 1;
                     rootRef.child('unchangedLobbies').child(lobby).child('counter').set(counter);
                 });
-            }else{
+            } else{
                rootRef.child('unchangedLobbies').child(lobby).child('counter').set(1);  
             }
-        }
-        else{
+        } else{
             rootRef.child('unchangedLobbies').child(lobby).remove(); 
         }
-    else{
+    } else {
         rootRef.child('unchangedLobbies').child(lobby).child('counter').set(0);
-     }
-    });
-
+    }
+ });
+    
+rootRef.child('lobbyTemp').set(lobbyData);
+    
+    
 console.log("AMMAR IS EATING AND BECOMING VERY Thin");
