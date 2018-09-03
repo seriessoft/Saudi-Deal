@@ -33,15 +33,7 @@ rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
     
 });
 
-unchangedLobbiesData.forEach((lobby) => {
-    rootRef.child('unchangedLobbies').child(lobby).once('value').then(function(snapshot){
-        if(snapshot.val().counter >= 10){
-            console.log(lobby + ' has not been changed since long');
-            //edit here next time
-        }
-    });
-    
-});
+
 
 lobbyData.forEach((lobby) => {
     if(lobby in lobbyTempData){
@@ -61,7 +53,17 @@ lobbyData.forEach((lobby) => {
         rootRef.child('unchangedLobbies').child(lobby).child('counter').set(0);
     }
  });
+ 
+unchangedLobbiesData.forEach((lobby) => {
+    rootRef.child('unchangedLobbies').child(lobby).once('value').then(function(snapshot){
+        if(snapshot.val().counter >= 10){
+            console.log(lobby + ' has not been changed since long');
+            //edit here next time
+        }
+    });
     
+});
+
 rootRef.child('lobbyTemp').set(lobbyData.val());
     
     
