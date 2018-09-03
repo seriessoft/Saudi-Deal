@@ -18,72 +18,67 @@ var rootRef = Firebase.database().ref();
 var lobbyData, lobbyTempData, unchangedLobbiesData;
 
 rootRef.child('lobby').once('value').then(function(snapshot){
-    lobbyData = snapshot;
-
+    lobbyData = snapshot.val();
     
-            rootRef.child('lobbyTemp').once('value').then(function(snapshot){
-                lobbyTempData = snapshot;
-
-                
-                
-                
-            rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
-                unchangedLobbiesData = snapshot;
-
-                
-                console.log("1");
-            console.log(lobbyData);
-            console.log("2");
-
+    rootRef.child('lobbyTemp').once('value').then(function(snapshot){
+        lobbyTempData = snapshot.val();
+        
+        rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
+            unchangedLobbiesData = snapshot.val();
             lobbyData.forEach((lobby) => {
+                
                 if(lobby in lobbyTempData){
+                    
                     if(lobbyData[lobby] == lobbyTempData[lobby]){
+                        
                         if (lobby in unchangedLobbiesData){
+                            
                             rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
+                                
                                 var counter = snapshot.val().counter + 1;
                                 rootRef.child('unchangedLobbies').child(lobby).child('counter').set(counter);
-                            });
-                        } else{
-                           rootRef.child('unchangedLobbies').child(lobby).child('counter').set(1);  
+                                });
+                                } else{
+                                   rootRef.child('unchangedLobbies').child(lobby).child('counter').set(1);  
+                                }
+                            } else{
+                                rootRef.child('unchangedLobbies').child(lobby).remove(); 
+                            }
+                        } else {
+                            rootRef.child('unchangedLobbies').child(lobby).child('counter').set(0);
                         }
-                    } else{
-                        rootRef.child('unchangedLobbies').child(lobby).remove(); 
-                    }
-                } else {
-                    rootRef.child('unchangedLobbies').child(lobby).child('counter').set(0);
-                }
-             });
+                     });
 
-            unchangedLobbiesData.forEach((lobby) => {
-                rootRef.child('unchangedLobbies').child(lobby).once('value').then(function(snapshot){
-                    if(snapshot.val().counter >= 10){
-                        console.log(lobby + ' has not been changed since long');
-                        //edit here next time
-                    }
-                });
+                    unchangedLobbiesData.forEach((lobby) => {
+                        rootRef.child('unchangedLobbies').child(lobby).once('value').then(function(snapshot){
+                            if(snapshot.val().counter >= 10){
+                                console.log(lobby + ' has not been changed since long');
+                                //edit here next time
+                            }
+                        });
 
-            });
+                    });
 
-            rootRef.child('lobbyTemp').set(lobbyData.val());
-                
-                
-                
-                
-                
-                
-            });
+                    rootRef.child('lobbyTemp').set(lobbyData.val());
 
-            
-                
-                
-                
-                
-            });
 
-    
-    
-    
-    //rootRef.child('lobbyTemp').set(snapshot.val());
+
+
+
+
+                    });
+
+
+
+
+
+
+                    });
+
+
+
+
+        
 });
 
     
