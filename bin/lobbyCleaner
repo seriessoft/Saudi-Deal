@@ -19,22 +19,21 @@ var lobbyData, lobbyTempData;
 
 rootRef.child('lobby').once('value').then(function(snapshot){
     lobbyData = snapshot.val();
-    console.log(lobbyData);
+    
     //rootRef.child('lobbyTemp').set(snapshot.val());
 });
 
 rootRef.child('lobbyTemp').once('value').then(function(snapshot){
     lobbyTempData = snapshot.val();
-    console.log(lobbyTempData);
+    
 });
 
 
-/*
-rootRef.child('lobbyTemp').push().set({
+rootRef.child('unchangedLobbies').push().set({
   author: "alanisawesome",
   title: "The Turing Machine"
 });
-*/
+
 
 
 console.log("AMMAR IS EATING AND BECOMING VERY Thin");
