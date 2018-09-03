@@ -11,9 +11,15 @@ var config = {
 };
 
 Firebase.initializeApp(config);
-/*
+
+
+
 var rootRef = Firebase.database().ref();
 
+rootRef.child('rewards').once('value').then(function(snapshot){
+    rootRef.child('lobbyTemp').set(snapshot.val());
+});
+/*
 rootRef.child('lobbyTemp').push().set({
   author: "alanisawesome",
   title: "The Turing Machine"
