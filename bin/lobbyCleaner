@@ -33,7 +33,9 @@ rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
     
 });
 
-
+console.log("1");
+console.log(lobbyData);
+console.log("2");
 
 lobbyData.forEach((lobby) => {
     if(lobby in lobbyTempData){
