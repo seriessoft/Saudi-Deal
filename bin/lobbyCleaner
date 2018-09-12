@@ -24,7 +24,12 @@ rootRef.child('lobby').once('value').then(function(snapshot){
         lobbyTempData = snapshot.val();
         
         rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
+            if(snapshot.exists()){
             unchangedLobbiesData = snapshot.val();
+            }
+            else{
+                unchangedLobbiesData = {data:true};
+            }
             Object.keys(lobbyData).forEach((lobby) => {
                 
                 if(lobby in lobbyTempData){
