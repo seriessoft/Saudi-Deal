@@ -34,7 +34,7 @@ rootRef.child('lobby').once('value').then(function(snapshot){
                 
                 if(lobby in lobbyTempData){
                     
-                    if(lobbyData[lobby] === lobbyTempData[lobby]){
+                    if(JSON.stringify(lobbyData[lobby]) == JSON.stringify(lobbyTempData[lobby])){
                         
                         if (lobby in unchangedLobbiesData){
                             
