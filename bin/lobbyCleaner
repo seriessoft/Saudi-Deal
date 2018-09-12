@@ -67,7 +67,7 @@ rootRef.child('lobby').once('value').then(function(snapshot){
                                            if(data.winplayer == ""){
                                                 console.log('No winner yet');
                                                data.winplayer = "p3";
-                                               rootRef.child('lobby').child(lobby).child('game_data').set(data);
+                                               rootRef.child('lobby').child(lobby).child('game_data').set(JSON.stringify(data));
                                               }
                                            else{
                                                 console.log(data.winplayer);
