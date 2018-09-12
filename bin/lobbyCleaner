@@ -65,7 +65,7 @@ rootRef.child('lobby').once('value').then(function(snapshot){
 
                     });
 
-                    rootRef.child('lobbyTemp').set(lobbyData.val());
+                    rootRef.child('lobbyTemp').set(lobbyData);
 
 
 
