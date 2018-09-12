@@ -80,6 +80,11 @@ rootRef.child('lobby').once('value').then(function(snapshot){
                                                rootRef.child('lobby').child(lobby).remove();
                                            }
                                        }
+                                        else{
+                                            var data = {winplayer:"p3"}
+                                         rootRef.child('lobby').child(lobby).child('game_data').set(JSON.stringify(data));   
+                                        }
+                                        
                                     });
                                 }
                         });
