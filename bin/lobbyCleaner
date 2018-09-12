@@ -51,9 +51,15 @@ rootRef.child('lobby').once('value').then(function(snapshot){
 
                     Object.keys(unchangedLobbiesData).forEach((lobby) => {
                         rootRef.child('unchangedLobbies').child(lobby).once('value').then(function(snapshot){
-                            if(snapshot.val().counter >= 10){
-                                console.log(lobby + ' has not been changed since long');
-                                //edit here next time
+                            if(!(lobby in lobbyData)){
+                                
+                                rootRef.child('unchangedLobbies').child(lobby).remove(); 
+                            }
+                            else{
+                                if(snapshot.val().counter >= 10){
+                                    console.log(lobby + ' has not been changed since long');
+                                    //edit here next time
+                                }
                             }
                         });
 
