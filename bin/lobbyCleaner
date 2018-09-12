@@ -40,9 +40,10 @@ rootRef.child('lobby').once('value').then(function(snapshot){
                             
                             rootRef.child('unchangedLobbies').child(lobby).once('value').then(function(snapshot){
                                 
-                                var counter = snapshot.val().counter + 1;
-                                
-                                rootRef.child('unchangedLobbies').child(lobby).child('counter').set(counter);
+                                if(snapshot.exists()){
+                                    var counter = snapshot.val().counter + 1;
+                                    rootRef.child('unchangedLobbies').child(lobby).child('counter').set(counter);
+                                }
                                 });
                                 } else{
                                    rootRef.child('unchangedLobbies').child(lobby).child('counter').set(1);  
