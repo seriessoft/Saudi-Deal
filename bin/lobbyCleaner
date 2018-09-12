@@ -45,7 +45,7 @@ rootRef.child('lobby').once('value').then(function(snapshot){
                                 rootRef.child('unchangedLobbies').child(lobby).remove(); 
                             }
                         } else {
-                            rootRef.child('unchangedLobbies').child(lobby).child('counter').set(0);
+                            //rootRef.child('unchangedLobbies').child(lobby).child('counter').set(0);
                         }
                      });
 
