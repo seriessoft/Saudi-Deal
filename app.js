@@ -623,8 +623,8 @@ wsServer.on('request', function(request) {
 							if(userDetails.accessToken === accessToken){
 								gameRef.once('value', function(snapshot) {
 									var resultGame = snapshot.val();
-									gameRef.remove();
-									roomRef.remove();
+									//gameRef.remove();
+									//roomRef.remove();
 									if(resultGame.winner_id ===0){
 										var subCatRef = database.child('category').child(resultGame.cat_id).child('subCategory').child(resultGame.sub_cat_id);
 										subCatRef.once('value', function(snapshot) {
