@@ -78,6 +78,7 @@ rootRef.child('lobby').once('value').then(function(snapshot){
                                            else{
                                                 console.log(data.winplayer);
                                                rootRef.child('lobby').child(lobby).remove();
+                                               rootRef.child('unchangedLobbies').child(lobby).remove();
                                            }
                                        }
                                         else{
