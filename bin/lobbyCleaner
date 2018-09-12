@@ -63,7 +63,13 @@ rootRef.child('lobby').once('value').then(function(snapshot){
                                     //edit here next time
                                     rootRef.child('lobby').child(lobby).child('game_data').once('value').then(function(snapshot){
                                        if(snapshot.exists()){
-                                          var data = JSON.parse(snapshot.val());
+                                           var data;
+                                           if(snapshot.hasChild('winplayer')){
+                                               data = snapshot.val();
+                                           }
+                                           else{
+                                               data = JSON.parse(snapshot.val());
+                                           }
                                            if(data.winplayer == ""){
                                                 console.log('No winner yet');
                                                data.winplayer = "p3";
