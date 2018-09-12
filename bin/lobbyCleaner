@@ -33,9 +33,10 @@ rootRef.child('lobby').once('value').then(function(snapshot){
                         
                         if (lobby in unchangedLobbiesData){
                             
-                            rootRef.child('unchangedLobbies').once('value').then(function(snapshot){
+                            rootRef.child('unchangedLobbies').child(lobby).once('value').then(function(snapshot){
                                 
                                 var counter = snapshot.val().counter + 1;
+                                
                                 rootRef.child('unchangedLobbies').child(lobby).child('counter').set(counter);
                                 });
                                 } else{
