@@ -1,3 +1,4 @@
+require('newrelic');
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 var express = require('express');
