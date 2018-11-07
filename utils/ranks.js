@@ -19,3 +19,7 @@ var evaluateDemotion = function(){
   }
 };
 
+module.exports = {
+  evaluatePromotion : evaluatePromotion,
+  evaluateDemotion : evaluateDemotion
+};
