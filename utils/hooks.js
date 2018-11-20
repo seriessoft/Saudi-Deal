@@ -18,7 +18,8 @@ var mapEmailFacebookIdToUser = function(){
 	var usersRef = Firebase.database().ref().child('users');
 	var emailsRef = Firebase.database().ref().child('emails');
 	var facebookIdsRef = Firebase.database().ref().child('facebookIds');
-	usersRef.once('child_added',function(snapp){
+	//usersRef.once('child_added',function(snapp){
+	usersRef.limitToLast(1).on('child_added',function(snapp){
 		var email = snapp.val().email || null;
 		var facebookId = snapp.val().facebookId || null;
 		var userId = snapp.key;
