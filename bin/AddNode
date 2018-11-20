@@ -15,4 +15,4 @@ var config = {
 Firebase.initializeApp(config);
 var rootRef = Firebase.database().ref();
 
-rootRef.child('rank').child('1').child('subRank').child('1').child('name').set('Beginner 1');
+rootRef.child('skills').child('1').child('level1').child('cost').set(5);
